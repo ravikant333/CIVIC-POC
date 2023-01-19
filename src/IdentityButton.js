@@ -1,11 +1,12 @@
-import { Keypair, PublicKey } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import { GatewayProvider, useGateway, IdentityButton, GatewayStatus } from '@civic/solana-gateway-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 const env = {
-  gatekeeperNetwork: new PublicKey('ni1jXzPTq1yTqo67tUmVgnp22b1qGAAZCtPmHtskqYG'),
+  gatekeeperNetwork: new PublicKey('tigoYhp9SpCDoCQmXGj2im5xa3mnjR1zuXrpCJ5ZRmi'),
 };
 
-const userKeypair = Keypair.generate();
+
 
 const dummyWallet = {
   publicKey: userKeypair.publicKey,
@@ -34,7 +35,6 @@ function CivicIdentityButton() {
           wallet={dummyWallet}
           gatekeeperNetwork={gatekeeperNetwork}
           clusterUrl={clusterUrl}>
-        <IdentityComponent/>
       </GatewayProvider>
   )
 };

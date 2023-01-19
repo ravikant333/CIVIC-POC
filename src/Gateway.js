@@ -1,15 +1,15 @@
 import React from 'react';
-import { PublicKey } from '@solana/web3.js';
+import { clusterApiUrl, PublicKey } from '@solana/web3.js';
 import { GatewayProvider, useGateway, GatewayStatus } from '@civic/solana-gateway-react';
 import { useWallet } from '@solana/wallet-adapter-react';
+import { IdentityButton } from '@civic/solana-gateway-react';
 
-// Default styles that can be overridden by your app
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 const env = {
     gatekeeperNetwork: new PublicKey('ignREusXmGrscGNUesoU9mxfds9AiYTezUKex2PsZV6'),
-    clusterUrl: 'https://api.mainnet-beta.solana.com',
-    cluster: 'mainnet-beta',
+    clusterUrl: 'https://api.devnet.solana.com',
+    cluster: 'devnet',
 };
 
 function RequestGatewayToken() {
@@ -17,7 +17,9 @@ function RequestGatewayToken() {
     return (
         <>
             <div>Wallet adapter connected</div>
-            <div>Pass status: {GatewayStatus[gatewayStatus]}</div>
+            {
+                GatewayStatus[gatewayStatus]=='ACTIVE'?<p>TMNE INSAAN APNE KO PROOVE KIA</p>:<p>TM INSAAN HO KYA?</p>
+            }
             <br />
             <button type='submit' onClick={requestGatewayToken}>Request Pass</button>
             <br />
@@ -37,6 +39,7 @@ function Gateway() {
             cluster={cluster}
             clusterUrl={clusterUrl}>
             { publicKey && <RequestGatewayToken /> }
+            <IdentityButton />
         </GatewayProvider>
     )
 }
